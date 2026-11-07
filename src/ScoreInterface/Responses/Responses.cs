@@ -1,0 +1,130 @@
+using ScoreInterface.Enums;
+using Lea;
+using System.Net.WebSockets;
+
+namespace ScoreInterface.Responses;
+
+/// <summary>
+/// A generic acknowledgement or error response. When <see cref="Code"/> is "kError", <see cref="Detail"/>
+/// carries Dorico's specific error identifier (e.g. "kClientRejected_ConnectTokenRejected").
+/// </summary>
+public sealed record Response(string Code, string? Detail)
+{
+	public override string ToString() => $"Response: {Code} {Detail}";
+}
+
+/// What one status message said; null means "not mentioned", not "off". DoricoSession accumulates the values.
+/// Change-only, even in reply to getstatus: grid resolution, rhythm dots, rest mode, note input active, duration.
+public sealed record StatusResponse : IEvent
+{
+	public int? ActiveOpenScoreID { get; init; }
+
+	public bool? HasScore { get; init; }
+
+	public bool? HasSelection { get; init; }
+
+	public NoteInputMode? NoteInputMode { get; init; }
+
+	public WindowMode? WindowMode { get; init; }
+
+	public Accidental? Accidental { get; init; }
+
+	/// <summary>The note-input duration, e.g. "kCrotchet" or "kMinim".</summary>
+	public string? Duration { get; init; }
+
+	/// <summary>The number of rhythm dots applied to the note-input duration.</summary>
+	public int? RhythmDots { get; init; }
+
+	/// <summary>The rhythmic grid resolution, e.g. "kCrotchet".</summary>
+	public string? RhythmicGridResolutionValue { get; init; }
+
+	/// <summary>Whether the note-input caret is active.</summary>
+	public bool? NoteInputActive { get; init; }
+
+	/// <summary>Whether note input is entering rests instead of notes.</summary>
+	public bool? RestMode { get; init; }
+
+	/// <summary>Whether Dorico is playing back.</summary>
+	public bool? InPlayback { get; init; }
+
+	/// <summary>Whether Dorico is recording.</summary>
+	public bool? IsRecording { get; init; }
+}
+
+/// <summary>
+/// Details on disconnecting from Dorico.
+/// </summary>
+public sealed record DisconnectResponse(WebSocketCloseStatus? CloseStatus, string? CloseStatusDescription) : IEvent;
+
+/// <summary>
+/// Notifies that the selection in a score has changed.
+/// </summary>
+public sealed record SelectionChangedResponse(int OpenScoreId) : IEvent;
+
+
+public sealed record OptionsChangedResponse(int OpenScoreId) : IEvent;
+
+/// <summary>
+/// Details on an individual command Dorico accepts via a command message.
+/// </summary>
+public sealed record CommandInfo(
+	string Name,
+	string? DisplayName = null,
+	IEnumerable<string>? RequiredParameters = null,
+	IEnumerable<string>? OptionalParameters = null)
+{
+	public IEnumerable<string> RequiredParameters { get; } = RequiredParameters ?? [];
+
+	public IEnumerable<string> OptionalParameters { get; } = OptionalParameters ?? [];
+
+	public override string ToString() => DisplayName ?? Name;
+}
+
+/// <summary>
+/// Version information about the connected instance of Dorico.
+/// </summary>
+public sealed record VersionResponse(string Variant, string Number)
+{
+	public override string ToString() => $"{Variant} {Number}";
+}
+
+/// <summary>
+/// Details on an individual engraving option.
+/// </summary>
+public sealed record OptionInfo(string Path, string ValueType, string CurrentValue, IEnumerable<string>? EnumValues);
+
+/// <summary>
+/// Details on an individual flow.
+/// </summary>
+public sealed record Flow(int FlowID, string FlowName)
+{
+	public override string ToString() => FlowName;
+}
+
+/// <summary>
+/// The list of flows in the active score.
+/// </summary>
+public sealed record FlowsListResponse(IEnumerable<Flow> Flows);
+
+/// <summary>
+/// Details about the properties which can be set on the current selection.
+/// </summary>
+public sealed record PropertiesListResponse(IEnumerable<string>? EventTypes);
+
+/// <summary>
+/// The library collections in the active score.
+/// </summary>
+public sealed record LibraryCollectionsListResponse(int OpenScoreID, IEnumerable<string> Collections);
+
+/// <summary>
+/// Details on an individual library entity, e.g. a paragraph style.
+/// </summary>
+public sealed record LibraryEntity(string EntityId, string Name, string? PlaybackTechniqueId)
+{
+	public override string ToString() => Name;
+}
+
+/// <summary>
+/// The entities in one library collection of the active score.
+/// </summary>
+public sealed record LibraryEntitiesListResponse(int OpenScoreId, IEnumerable<LibraryEntity>? LibraryEntities);

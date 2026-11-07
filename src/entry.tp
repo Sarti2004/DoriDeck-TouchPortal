@@ -1,0 +1,542 @@
+{
+  "api": 10,
+  "version": 1,
+  "name": "DoriDeck",
+  "id": "com.sarti2004.dorideck",
+  "configuration": {
+    "colorDark": "#23324A",
+    "colorLight": "#3A5A8C",
+    "parentCategory": "content"
+  },
+  "plugin_start_cmd_windows": "%TP_PLUGIN_FOLDER%DoriDeck\\DoriDeck.exe",
+  "plugin_start_cmd_mac": "sh %TP_PLUGIN_FOLDER%DoriDeck/start.sh",
+  "categories": [
+    {
+      "id": "com.sarti2004.dorideck.category.main",
+      "name": "DoriDeck",
+      "imagepath": "%TP_PLUGIN_FOLDER%DoriDeck/Assets/icon.png",
+      "actions": [
+        {
+          "id": "com.sarti2004.dorideck.action.connect",
+          "name": "Connect to Dorico",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Connect to Dorico"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.run_command",
+          "name": "Run Dorico command",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Run Dorico command {$com.sarti2004.dorideck.run_command.command$} in all flows {$com.sarti2004.dorideck.run_command.all_flows$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.run_command.command",
+              "type": "text",
+              "default": ""
+            },
+            {
+              "id": "com.sarti2004.dorideck.run_command.all_flows",
+              "type": "switch",
+              "default": false
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.run_predefined_command",
+          "name": "Run predefined Dorico command",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Run {$com.sarti2004.dorideck.run_predefined_command.command$} in all flows {$com.sarti2004.dorideck.run_predefined_command.all_flows$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.run_predefined_command.command",
+              "type": "choice",
+              "default": "Dynamic pp",
+              "valueChoices": [
+                "Dynamic pp",
+                "Dynamic p",
+                "Dynamic mp",
+                "Dynamic mf",
+                "Dynamic f",
+                "Dynamic ff",
+                "Pedal",
+                "Pizzicato",
+                "Marcato",
+                "Portato",
+                "Mute",
+                "Up-bow",
+                "Down-bow",
+                "Con sordino",
+                "Natural harmonic",
+                "Harmonic",
+                "Arco",
+                "Glissando",
+                "Trill",
+                "Mordent",
+                "Accent",
+                "Staccato",
+                "Marcato (articulation)",
+                "Tenuto",
+                "Stress",
+                "Staccatissimo",
+                "Unstress",
+                "Fermata",
+                "Caesura",
+                "Breve",
+                "Whole note",
+                "Half note",
+                "Quarter note",
+                "Eighth note",
+                "16th note",
+                "32nd note",
+                "64th note"
+              ]
+            },
+            {
+              "id": "com.sarti2004.dorideck.run_predefined_command.all_flows",
+              "type": "switch",
+              "default": false
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.clear_connection_token",
+          "name": "Clear Dorico connection token",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Clear Dorico connection token"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.open_recent_file",
+          "name": "Open recent Dorico file",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Open recent Dorico file"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.open_previous_file",
+          "name": "Open previous Dorico file",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Open previous Dorico file"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.run_script",
+          "name": "Run Dorico script",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Run Dorico script {$com.sarti2004.dorideck.run_script.script$} in all flows {$com.sarti2004.dorideck.run_script.all_flows$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.run_script.script",
+              "type": "choice",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "com.sarti2004.dorideck.run_script.all_flows",
+              "type": "switch",
+              "default": false
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.custom_script",
+          "name": "Run custom Lua in Dorico",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Run Lua in Dorico {$com.sarti2004.dorideck.custom_script.lua$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.custom_script.lua",
+              "type": "text",
+              "default": "local app = DoApp.DoApp()"
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.respell_note",
+          "name": "Respell Dorico note",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Respell Dorico note"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.pickup_measure",
+          "name": "Create Dorico pickup measure",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Create Dorico pickup measure"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.section_header",
+          "name": "Insert Dorico rehearsal mark",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Insert rehearsal mark {$com.sarti2004.dorideck.section_header.text$} on a new line {$com.sarti2004.dorideck.section_header.new_line$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.section_header.text",
+              "type": "text",
+              "default": "VERSE"
+            },
+            {
+              "id": "com.sarti2004.dorideck.section_header.new_line",
+              "type": "switch",
+              "default": true
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.change_paragraph_style",
+          "name": "Change Dorico paragraph style",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Change paragraph style to {$com.sarti2004.dorideck.change_paragraph_style.style$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.change_paragraph_style.style",
+              "type": "choice",
+              "default": "",
+              "valueChoices": []
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.choir_reduction",
+          "name": "Create Dorico choir reduction",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Create choir reduction with voices {$com.sarti2004.dorideck.choir_reduction.voices$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.choir_reduction.voices",
+              "type": "text",
+              "default": "Soprano,Alto,Tenor,Bass"
+            }
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.insert_lyrics",
+          "name": "Insert lyrics into Dorico",
+          "type": "communicate",
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Lyrics from clipboard: {$com.sarti2004.dorideck.insert_lyrics.mode$} language {$com.sarti2004.dorideck.insert_lyrics.language$} into {$com.sarti2004.dorideck.insert_lyrics.verse$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.insert_lyrics.mode",
+              "type": "choice",
+              "default": "Syllabify and insert",
+              "valueChoices": [
+                "Syllabify and insert",
+                "Syllabify only",
+                "Insert only"
+              ]
+            },
+            {
+              "id": "com.sarti2004.dorideck.insert_lyrics.language",
+              "type": "choice",
+              "default": "English/Russian",
+              "valueChoices": [
+                "English/Russian",
+                "German",
+                "Finnish",
+                "Latin"
+              ]
+            },
+            {
+              "id": "com.sarti2004.dorideck.insert_lyrics.verse",
+              "type": "choice",
+              "default": "Auto",
+              "valueChoices": [
+                "Auto",
+                "Verse 1",
+                "Verse 2",
+                "Verse 3",
+                "Verse 4",
+                "Chorus"
+              ]
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_connected",
+          "type": "choice",
+          "desc": "Dorico connected",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_flow_id",
+          "type": "text",
+          "desc": "Dorico current flow id",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_flow_name",
+          "type": "text",
+          "desc": "Dorico current flow name",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_flow_count",
+          "type": "text",
+          "desc": "Dorico flow count",
+          "default": "0"
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_mode",
+          "type": "text",
+          "desc": "Dorico mode",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_mode_raw",
+          "type": "text",
+          "desc": "Dorico mode (raw)",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_has_score",
+          "type": "choice",
+          "desc": "Dorico has score",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_hasSelection",
+          "type": "choice",
+          "desc": "Dorico has selection",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_activeOpenScoreID",
+          "type": "text",
+          "desc": "Dorico active open score id",
+          "default": "-1"
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_noteInputMode",
+          "type": "text",
+          "desc": "Dorico note input mode",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_accidental",
+          "type": "text",
+          "desc": "Dorico accidental",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_noteInputActive",
+          "type": "choice",
+          "desc": "Dorico note input active",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_restMode",
+          "type": "choice",
+          "desc": "Dorico rest mode",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_recent_file",
+          "type": "text",
+          "desc": "Dorico recent file",
+          "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_previous_file",
+          "type": "text",
+          "desc": "Dorico previous file",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "name": "Dorico version",
+      "type": "text",
+      "default": "6",
+      "tooltip": {
+        "body": "Major version of your Dorico installation. Used to find Dorico's files until it connects."
+      }
+    },
+    {
+      "name": "Scripts folder",
+      "type": "folder",
+      "default": "",
+      "tooltip": {
+        "body": "Leave empty to use Dorico's default Script Plug-ins folder."
+      }
+    },
+    {
+      "name": "Flow switch delay (ms)",
+      "type": "number",
+      "default": "150",
+      "minValue": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/solution/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DoriDeck.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DoriDeck.Tests/DoriDeck.Tests.csproj" />
+  </Folder>
+</Solution>

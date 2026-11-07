@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <AssemblyName>DoriDeck</AssemblyName>
+        <RootNamespace>DoriDeck</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lea" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="Serilog.Extensions.Hosting" />
+        <PackageReference Include="Serilog.Sinks.Console" />
+        <PackageReference Include="Serilog.Sinks.File" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="DoriDeck.Tests" />
+    </ItemGroup>
+
+    <!-- Packaged into the .tpp next to the executable. -->
+    <ItemGroup>
+        <Content Include="entry.tp" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="start.sh" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="Assets\icon.png" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="mhyph.txt" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="dorico-commands.md" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+</Project>
