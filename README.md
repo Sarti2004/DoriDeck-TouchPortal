@@ -31,9 +31,9 @@ After installing the plugin, open Macro Deck and add one of the available Dorico
 | **Run Script**  | Executes a recorded Dorico macro.                                                            | 
 | **Run Command** | Executes a Dorico command through the API. Examples of available commands can be found [here](https://github.com/Sarti2004/DoriDeck/wiki/DoriDeck-Command-Examples). | 
 | **Run predefined Dorico command** |  Picks a common command (dynamics, techniques, articulations, note values) from a list | 
-| **Insert Lyrics**    | Syllabify and Paste Lyrics to Dorico. Use custom syllabification dictionaries (`_Words_EN.txt` and so on) here: %AppData%\DoriDeck\dictionaries                                                   |
+| **Insert Lyrics**    | Syllabify and Paste Lyrics to Dorico. <br>Use custom syllabification dictionaries (`_Words_EN.txt` and so on) here: `%AppData%\DoriDeck\dictionaries` |
 | **Pickup Measure**   | Simplify creating a pickup measure                                                      |
-| **Rehersal Mark**    | Custom rehearsal mark (Section header). Requires Finale Maestro font (change it in Library->Paragraph Styles->Rehearsal Marks->Font) |
+| **Rehersal Mark**    | Custom rehearsal mark (Section header). <br>Requires `Finale Maestro Text` font (change it in Library->Paragraph Styles->Rehearsal Marks->Font) |
 | **Respell Note**     | Enharmonically Respell note                                                             | 
 | **Choir Reduction**  | Create a piano version of a choir score using cues                                      | 
 | **Connect**          | Creates a connection between Macro Deck and Dorico.                                     |
