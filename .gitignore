@@ -1,6 +1,5 @@
 bin/
 obj/
-dist/
 *.log
 
 # IDEs and editors
@@ -174,6 +173,7 @@ artifacts/*
 .vscode/*
 _dotnet-tools.json
 .editorconfig
+.build/*
 
 
 
