@@ -4,6 +4,9 @@ An unofficial **Touch Portal** plugin that provides an interface for running Dor
 
 This plugin is intended to make common Dorico workflows faster by allowing users to trigger recorded macros, execute Dorico API commands, and connect Touch Portal buttons to Dorico-related actions.
 
+Download [Windows version](https://github.com/Sarti2004/DoriDeck-TouchPortal/releases/download/v0.1.0/DoriDeck-win-x64.tpp)  
+Download [MacOs version](https://github.com/Sarti2004/DoriDeck-TouchPortal/releases/download/v0.1.0/DoriDeck-osx-arm64.tpp)
+
 ## Project Note
 
 I am not a power Dorico user. I use Dorico casually from time to time, mainly for small projects, especially choir-related work. This extension was created to make my own workflow faster and more comfortable, and it currently works very well for my needs.
