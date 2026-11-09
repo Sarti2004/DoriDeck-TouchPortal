@@ -399,6 +399,44 @@
               ]
             }
           ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.action.duration_pad_key",
+          "name": "Duration Pad key (long press)",
+          "type": "communicate",
+          "hasHoldFunctionality": true,
+          "lines": {
+            "action": [
+              {
+                "language": "default",
+                "data": [
+                  {
+                    "lineFormat": "Duration Pad key {$com.sarti2004.dorideck.duration_pad_key.key$}"
+                  }
+                ]
+              }
+            ]
+          },
+          "data": [
+            {
+              "id": "com.sarti2004.dorideck.duration_pad_key.key",
+              "type": "choice",
+              "default": "Quarter",
+              "valueChoices": [
+                "Breve",
+                "Whole",
+                "Half",
+                "Quarter",
+                "Eighth",
+                "16th",
+                "32nd",
+                "64th",
+                "Play",
+                "Left",
+                "Right"
+              ]
+            }
+          ]
         }
       ],
       "states": [
@@ -511,6 +549,57 @@
           "type": "text",
           "desc": "Dorico previous file",
           "default": ""
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_duration",
+          "type": "choice",
+          "desc": "Dorico note duration",
+          "default": "",
+          "valueChoices": [
+            "",
+            "Breve",
+            "Whole",
+            "Half",
+            "Quarter",
+            "Eighth",
+            "16th",
+            "32nd",
+            "64th",
+            "Breve dotted",
+            "Whole dotted",
+            "Half dotted",
+            "Quarter dotted",
+            "Eighth dotted",
+            "16th dotted",
+            "32nd dotted",
+            "64th dotted"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_rhythmDots",
+          "type": "text",
+          "desc": "Dorico rhythm dots",
+          "default": "0"
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_inPlayback",
+          "type": "choice",
+          "desc": "Dorico playing",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "id": "com.sarti2004.dorideck.state.dorico_isRecording",
+          "type": "choice",
+          "desc": "Dorico recording",
+          "default": "false",
+          "valueChoices": [
+            "true",
+            "false"
+          ]
         }
       ]
     }

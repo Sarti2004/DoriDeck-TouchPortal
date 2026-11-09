@@ -7,6 +7,10 @@ internal static class MessageTypes
 {
 	public const string Info = "info";
 	public const string Action = "action";
+
+	// Sent instead of "action" for actions in a button's On Hold tab.
+	public const string Down = "down";
+	public const string Up = "up";
 	public const string Settings = "settings";
 	public const string ClosePlugin = "closePlugin";
 }
@@ -26,7 +30,8 @@ internal sealed class ActionData(IReadOnlyList<ActionDataItem> items)
 		string.Equals(GetText(id), "true", StringComparison.OrdinalIgnoreCase);
 }
 
-internal sealed record ActionMessage(string ActionId, ActionData Data);
+// Type is action, down or up.
+internal sealed record ActionMessage(string ActionId, ActionData Data, string Type = MessageTypes.Action);
 
 internal sealed record PairMessage(string Id)
 {
@@ -77,6 +82,9 @@ internal static class MessageSerializer
 				.ToList()
 			: [];
 
-		return new ActionMessage(root.GetProperty("actionId").GetString() ?? string.Empty, new ActionData(items));
+		return new ActionMessage(
+			root.GetProperty("actionId").GetString() ?? string.Empty,
+			new ActionData(items),
+			root.TryGetProperty("type", out var type) ? type.GetString() ?? MessageTypes.Action : MessageTypes.Action);
 	}
 }

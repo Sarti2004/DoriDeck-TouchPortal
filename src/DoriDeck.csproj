@@ -25,6 +25,7 @@
         <Content Include="entry.tp" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="start.sh" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="Assets\icon.png" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="Pages\*.tpz2" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="mhyph.txt" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="dorico-commands.md" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>

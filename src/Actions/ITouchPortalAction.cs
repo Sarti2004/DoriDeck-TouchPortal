@@ -9,3 +9,11 @@ internal interface ITouchPortalAction
 
 	Task ExecuteAsync(ActionData data, CancellationToken cancellationToken);
 }
+
+/// An action declared with hasHoldFunctionality: from a button's On Hold tab, TP sends down and up instead.
+internal interface ITouchPortalHoldAction : ITouchPortalAction
+{
+	Task DownAsync(ActionData data, CancellationToken cancellationToken);
+
+	Task UpAsync(ActionData data, CancellationToken cancellationToken);
+}

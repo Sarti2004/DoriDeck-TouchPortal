@@ -152,6 +152,8 @@ internal sealed class TouchPortalClient(
 					SettingsReceived?.Invoke(MessageSerializer.ParseSettings(root, "values"));
 					break;
 				case MessageTypes.Action:
+				case MessageTypes.Down:
+				case MessageTypes.Up:
 					_ = dispatcher.DispatchAsync(MessageSerializer.ParseAction(root), cancellationToken);
 					break;
 				case MessageTypes.ClosePlugin:

@@ -38,7 +38,8 @@ internal static class DoriDeckServices
 			.AddSingleton<ITouchPortalAction, SectionHeaderAction>()
 			.AddSingleton<ITouchPortalAction, ChangeParagraphStyleAction>()
 			.AddSingleton<ITouchPortalAction, ChoirReductionAction>()
-			.AddSingleton<ITouchPortalAction, InsertLyricsAction>();
+			.AddSingleton<ITouchPortalAction, InsertLyricsAction>()
+			.AddSingleton<ITouchPortalAction, DurationPadKeyAction>();
 
 		services
 			.AddSingleton(options)

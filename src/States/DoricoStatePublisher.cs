@@ -1,4 +1,5 @@
 using System.Globalization;
+using DoriDeck.Actions;
 using DoriDeck.TouchPortal;
 using Microsoft.Extensions.Hosting;
 
@@ -27,7 +28,17 @@ internal sealed class DoricoStatePublisher : IHostedService
 		(Prefix + "dorico_restMode", s => Bool(s.RestMode)),
 		(Prefix + "dorico_recent_file", s => s.RecentFileName(0)),
 		(Prefix + "dorico_previous_file", s => s.RecentFileName(1)),
+		(Prefix + "dorico_duration", DurationName),
+		(Prefix + "dorico_rhythmDots", s => s.RhythmDots.ToString(CultureInfo.InvariantCulture)),
+		(Prefix + "dorico_inPlayback", s => Bool(s.InPlayback)),
+		(Prefix + "dorico_isRecording", s => Bool(s.IsRecording)),
 	];
+
+	private static IReadOnlyList<(string Name, string DoricoValue)> Durations => DurationPadKeyAction.Durations;
+
+	
+	public static IEnumerable<string> DurationValues =>
+		Durations.Select(d => d.Name).Prepend("").Concat(Durations.Select(d => d.Name + " dotted"));
 
 	private readonly DoricoSession _session;
 	private readonly ITouchPortalClient _client;
@@ -42,6 +53,13 @@ internal sealed class DoricoStatePublisher : IHostedService
 	}
 
 	private static string Bool(bool value) => value ? "true" : "false";
+
+	// Empty for a duration the pad has no key for.
+	private static string DurationName(DoricoSession session)
+	{
+		var name = Durations.FirstOrDefault(d => string.Equals(d.DoricoValue, session.Duration, StringComparison.OrdinalIgnoreCase)).Name;
+		return name is null ? "" : session.RhythmDots > 0 ? name + " dotted" : name;
+	}
 
 	public static IEnumerable<string> StateIds => StateSpecs.Select(spec => spec.Id);
 

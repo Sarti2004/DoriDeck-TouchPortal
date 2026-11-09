@@ -24,7 +24,18 @@ internal sealed class ActionDispatcher(IEnumerable<ITouchPortalAction> actions, 
 		{
 			try
 			{
-				await action.ExecuteAsync(message.Data, cancellationToken);
+				switch (message.Type, action)
+				{
+					case (MessageTypes.Down, ITouchPortalHoldAction hold):
+						await hold.DownAsync(message.Data, cancellationToken);
+						break;
+					case (MessageTypes.Up, ITouchPortalHoldAction hold):
+						await hold.UpAsync(message.Data, cancellationToken);
+						break;
+					case (MessageTypes.Action, _):
+						await action.ExecuteAsync(message.Data, cancellationToken);
+						break;
+				}
 			}
 			catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
 			{
