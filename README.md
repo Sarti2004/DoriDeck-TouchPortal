@@ -6,6 +6,7 @@ This plugin is intended to make common Dorico workflows faster by allowing users
 
 Download [Windows version](https://github.com/Sarti2004/DoriDeck-TouchPortal/releases/download/v0.1.0/DoriDeck-win-x64.tpp)  
 Download [MacOs version](https://github.com/Sarti2004/DoriDeck-TouchPortal/releases/download/v0.1.0/DoriDeck-osx-arm64.tpp)
+Download [Duration Pad Page](https://github.com/Sarti2004/DoriDeck-TouchPortal/releases/download/v0.2.0/DoriDeck.Duration.Pad.tpz2)
 
 ## Project Note
 
